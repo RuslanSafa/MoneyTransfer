@@ -8,12 +8,20 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.math.BigDecimal;
 
+/**
+ * Класс управления переводом и запроса баланса.
+ */
 @Controller
 public class TransferService {
     @Autowired
     private DAO dao;
 
-
+    /**
+     * Обработка запроса баланса пользователя по идентификатору.
+     *
+     * @param id - Идентификатор пользователя.
+     * @return Если пользователь существует, баланс пользователя, иначе сообщение "Пользователь не найден"
+     */
     @RequestMapping("/balance")
     @ResponseBody
     public String getBalance(@RequestParam("id") int id) {
@@ -21,6 +29,14 @@ public class TransferService {
         return "Пользователь не найден";
     }
 
+    /**
+     * Обработка запроса перевода необходимо суммы от отправиля к получателю.
+     *
+     * @param fromId - Идентификатор отправителя.
+     * @param toId   - Идентификатор получателя.
+     * @param sum    - Сумма перевода.
+     * @return При успешном переводе сообщение "success!!", иначе сообщение о причине не возможности перевода.
+     */
     @RequestMapping("/transfer")
     @ResponseBody
     public String transferMoney(@RequestParam("from") int fromId, @RequestParam("to") int toId, @RequestParam("sum") BigDecimal sum) {

@@ -2,6 +2,9 @@ package com.example.MoneyTrasfer.dto;
 
 import java.math.BigDecimal;
 
+/**
+ * Класс хранения информации о пользователе.
+ */
 public class User {
     private final int id;
     private final String userName;
